@@ -18,8 +18,8 @@ const config = {
         ntr: ['var(--font-ntr)', 'sans-serif'],
       },
       colors: {
-        darkPink:'#F49BAB',
-        darkPurple:'#7F55B1',
+        darkPink: '#F49BAB',
+        darkPurple: '#7F55B1',
         lightPink: '#FFE1E0',
         lightPurple: '#9B7EBD'
       }

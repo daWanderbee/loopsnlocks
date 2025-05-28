@@ -1,11 +1,13 @@
 
 import "./globals.css";
-import { HeroUIProvider } from "@heroui/system";
 import 'tailwindcss/tailwind.css'
 import Footer from "@/components/layout/Footer";
 import { Moul } from 'next/font/google';
-import {NTR} from 'next/font/google';
+import { NTR } from 'next/font/google';
 import { MyNavbar } from "@/components/layout/MyNavbar";
+import Providers from "./providers";
+import { ToastProvider } from "@heroui/toast"; 
+
 export const metadata = {
   title: "LoopsnLocks",
   description: "TYour own app to learn crotchet",
@@ -13,12 +15,12 @@ export const metadata = {
 
 const moul = Moul({
   subsets: ['latin'],
-  weight: '400', 
+  weight: '400',
   variable: '--font-moul',
 });
 const ntr = NTR({
   subsets: ['latin'],
-  weight: '400', 
+  weight: '400',
   variable: '--font-ntr',
 });
 
@@ -33,11 +35,12 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="h-1vh w-1vw">
-        <HeroUIProvider>
+        <Providers>
           <MyNavbar />
           {children}
-          <Footer />       
-          </HeroUIProvider>
+          <ToastProvider placement="bottom-right"/>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
