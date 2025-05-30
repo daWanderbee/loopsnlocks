@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         />
       </head>
-      <body className="h-1vh w-1vw">
+      <body className="h-1vh w-1vw bg-darkPurple">
         <Providers>
           <MyNavbar />
           {children}

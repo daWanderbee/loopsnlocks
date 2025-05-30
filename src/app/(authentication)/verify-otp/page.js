@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@heroui/button";
 import { useRouter } from "next/navigation";
+import { addToast } from "@heroui/toast";
 
 export default function Page() {
     const [email, setEmail] = useState("");
@@ -36,12 +37,14 @@ export default function Page() {
                     body: JSON.stringify(payload),
                 }
             );
-
-            console.log("Response status:", res.status);
             const data = await res.json();
 
             if (res.ok) {
-                alert("OTP verified successfully!");
+                addToast({
+                    title: "OTP Verified",
+                    description: "Your email has been successfully verified!",
+                    color: "success",
+                });
                 localStorage.removeItem("pendingEmail");
                 router.push("/sign-in");
             } else {

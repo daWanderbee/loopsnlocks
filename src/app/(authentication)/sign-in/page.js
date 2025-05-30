@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Card, CardHeader, CardBody, CardFooter } from "@heroui/card";
 import { Button } from "@heroui/button";
 import { useRouter } from "next/navigation";
+import { addToast } from "@heroui/toast";
 
 export default function Page() {
     const [email, setEmail] = useState("");
@@ -27,10 +28,18 @@ export default function Page() {
             );
             if (res.ok) {
                 setOtpRequested(true);
-                alert("OTP sent successfully!");
+               addToast({
+                    title: "OTP Sent",
+                    description: "An OTP has been sent to your email. Please check your inbox.",
+                    color: "success",
+                });
             } else {
                 const { error, detail } = await res.json();
-                alert(`Failed to send OTP: ${detail || error || "Something went wrong"}`);
+               addToast({
+                    title: "Error",
+                    description: error || detail || "Failed to send OTP",
+                    color: "error",
+                });
             }
         } catch (err) {
             console.error(err);
@@ -53,7 +62,11 @@ export default function Page() {
             const data = await res.json();
 
             if (res.ok) {
-                alert("Login successful!");
+                addToast({
+                    title: "Login Successful",
+                    description: "You have successfully logged in!",
+                    color: "success",
+                });    
                 router.push("/dashboard");
             } else {
                 alert(`Login failed: ${data.error || data.detail || "Invalid credentials"}`);
